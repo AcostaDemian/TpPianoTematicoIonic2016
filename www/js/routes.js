@@ -10,16 +10,6 @@ angular.module('app.routes', [])
     
   
 
-      .state('menu.trivia', {
-    url: '/trivia',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/trivia.html',
-        controller: 'triviaCtrl'
-      }
-    }
-  })
-
   .state('menu.piano', {
     url: '/piano',
     views: {
@@ -40,16 +30,6 @@ angular.module('app.routes', [])
     url: '/login',
     templateUrl: 'templates/login.html',
     controller: 'loginCtrl'
-  })
-
-  .state('menu.movimiento', {
-    url: '/movimiento',
-    views: {
-      'side-menu21': {
-        templateUrl: 'templates/movimiento.html',
-        controller: 'movimientoCtrl'
-      }
-    }
   })
 
   .state('menu.inicio', {
