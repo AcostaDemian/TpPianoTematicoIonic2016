@@ -25,7 +25,15 @@ angular.module('app.routes', [])
     templateUrl: 'templates/menu.html',
     controller: 'menuCtrl'
   })
-
+  .state ('menu.melodia',{
+    url: '/melodia',
+     views: {
+      'side-menu21': {
+        templateUrl: 'templates/melodias.html',
+        controller: 'melodiaCtrl'
+      }
+    }
+  })
   .state('login', {
     url: '/login',
     templateUrl: 'templates/login.html',
