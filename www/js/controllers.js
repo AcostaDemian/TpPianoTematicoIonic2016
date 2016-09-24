@@ -3,7 +3,7 @@ angular.module('app.controllers', ['firebase','ngCordova'])
 .controller('pianoCtrl', ['$scope', '$stateParams','$ionicPopup', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams,$ionicPopup, $cordovaNativeAudio ) {
+function ($scope, $stateParams,$ionicPopup, $cordovaFile, $cordovaNativeAudio ) {
 
   var pregsRef = new Firebase("https://triviapoke.firebaseio.com/melodias");
 	var record = false;
@@ -81,12 +81,31 @@ function ($scope, $stateParams,$ionicPopup, $cordovaNativeAudio ) {
      $scope.play =stop;
     $("#boton").css('background-image', "url(icons/stop.png)");
   }
+
   function stop(){
-    record = false;
-       $("#boton").css('background-image', "url(icons/play.png)");
-       $scope.play =  play;
+    if($scope.secuencia[0]!=null){
+      record = false;
+      $("#boton").css('background-image', "url(icons/play.png)");
+      $scope.play =  play;
+      //guardarTXT();
       showPopup();
+    }
   }
+
+  function guardarTXT(){
+    try{
+    var secuenciaTema = $scope.secuencia.toString();
+    $cordovaFile.writeFile(cordova.file.dataDirectory, "secuencia.txt", secuenciaTema, true)
+    .then(function(exito){
+      alert(secuenciaTema);
+    },function(error){
+      alert("error al escribir");
+    })
+    }catch(error){
+      alert(error);
+    }
+  }
+
   function showPopup() {
   $scope.data = {};
 
